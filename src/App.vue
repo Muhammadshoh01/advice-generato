@@ -1,10 +1,39 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { ref } from 'vue'
+import IconFlatGame from './components/icons/IconFlatGame.vue'
+import axios from 'axios'
+const info = ref(null)
+
+const getAdvice = () => {
+	axios
+		.get('https://api.adviceslip.com/advice')
+		.then(res => (info.value = res.data))
+}
+getAdvice()
+
+const changeAdvice = () => {
+	getAdvice()
+}
 </script>
 
 <template>
-	<RouterView />
+	<div class="parent">
+		<div class="advice">
+			<p class="advice__id">Advice #{{ info.slip.id }}</p>
+			<h1 class="advice__advice">"{{ info.slip.advice }}"</h1>
+		</div>
+		<div class="line">
+			<div class="l-1"></div>
+			<div class="l-2">
+				<div></div>
+				<div></div>
+			</div>
+			<div class="l-3"></div>
+		</div>
+		<div>
+			<button class="flatBtn" @click="changeAdvice"><IconFlatGame /></button>
+		</div>
+	</div>
 </template>
 
 <style scoped></style>
