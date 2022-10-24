@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import IconFlatGame from './components/icons/IconFlatGame.vue'
 import axios from 'axios'
-const info = ref(null)
+const info = ref([])
 
 const getAdvice = () => {
 	axios
@@ -10,15 +10,11 @@ const getAdvice = () => {
 		.then(res => (info.value = res.data))
 }
 getAdvice()
-
-const changeAdvice = () => {
-	getAdvice()
-}
 </script>
 
 <template>
 	<div class="parent">
-		<div class="advice">
+		<div v-if="info != ''" class="advice">
 			<p class="advice__id">Advice #{{ info.slip.id }}</p>
 			<h1 class="advice__advice">"{{ info.slip.advice }}"</h1>
 		</div>
@@ -31,7 +27,7 @@ const changeAdvice = () => {
 			<div class="l-3"></div>
 		</div>
 		<div>
-			<button class="flatBtn" @click="changeAdvice"><IconFlatGame /></button>
+			<button class="flatBtn" @click="getAdvice"><IconFlatGame /></button>
 		</div>
 	</div>
 </template>
