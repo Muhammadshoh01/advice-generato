@@ -1,3 +1,3 @@
-# Frontend Mentor - Advice generator app
+#  Advice generator app
 
-Advice generator app - Advice Slip API orqali maslahatlarni random chiqarib beruvchi generator
+Live demo - [https://muhammadshoh01.github.io/advice-generator/](https://muhammadshoh01.github.io/advice-generator/)
